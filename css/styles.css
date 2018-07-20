@@ -333,6 +333,14 @@ nav h1 a {
 }
 
 /* ====================== Media Queries ====================== */
+@media screen and (max-width: 420px){
+  #restaurants-list li {
+    min-width: 275px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
 @media screen and (max-width: 510px){
   .filter-options {
     height: 125px;
