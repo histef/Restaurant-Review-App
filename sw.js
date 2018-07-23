@@ -4,8 +4,15 @@
 	self.addEventListener('fetch', event => {
 		console.log('[ServiceWorker] fetched');
 		event.respondWith(
-			new Response('test: hijacking')
-			);
+			fetch(event.request).then(()=>{
+				if (response.status === 404){
+					return new Response("Non-existent page");
+				}
+				return response;
+			}).catch(()=>{
+				return new Response('Server connection failed');				
+			})
+		);
 	});
 
 	self.addEventListener('activate', event => {
