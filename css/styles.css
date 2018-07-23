@@ -14,22 +14,26 @@ body {
   width:100%;
 }
 
+a {
+  text-decoration: none;
+}
+
 ul, li {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
 	color: #333;
 }
 
-a {
-	color: orange;
-	text-decoration: none;
-}
 
-a:hover, a:focus {
+button:hover, button:focus {
 	color: #3397db;
 	text-decoration: none;
 }
 
+button a {
+  color: black;
+  text-decoration: none;
+}
 a img{
 	border: none 0px #fff;
 }
@@ -56,6 +60,10 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   padding: 25px;
   text-align: center;
   text-transform: uppercase;
+}
+
+#footer a {
+  color: white;
 }
 
 /* ====================== Navigation ====================== */
@@ -142,9 +150,13 @@ nav h1 a {
 
 .filter-options .filter-input{
   margin: auto;
-    display: flex;
-    justify-content: space-around;
-    flex-flow: wrap;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: wrap;
+}
+
+label {
+  display: none;
 }
 
 .filter-options select {
@@ -214,7 +226,7 @@ nav h1 a {
   font-size: 11pt;
 }
 
-#restaurants-list li a {
+#restaurants-list li button {
   background-color: orange;
   border-bottom: 3px solid #eee;
   color: #fff;
@@ -330,7 +342,6 @@ nav h1 a {
 #restaurant-hours {
   margin-left: auto;
   margin-right: auto;
-
 }
 
 #restaurant-hours td {
@@ -357,21 +368,21 @@ nav h1 a {
 }
 
 @media screen and (min-width: 700px){
-  .inside {
-    width: 100%;
-  }
-
   .filter-input{
     max-width: 700px;
   }
 
+  .inside {
+    width: 100%;
+  }
+
   .inside #maincontent{
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  justify-content: center;
-}
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    justify-content: center;
+  }
 
   .inside header {
     grid-column: 1/2;
@@ -383,7 +394,6 @@ nav h1 a {
     height: 100%;
     width: 100%;
   }
-
 
   .inside #restaurant-container {
     grid-column: 2;
