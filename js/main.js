@@ -1,3 +1,5 @@
+const API_key = '<please-insert-your-API-key-here>';
+
 let restaurants,
   neighborhoods,
   cuisines
@@ -161,6 +163,7 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = `Restaurant photo of ${restaurant.name}`;
   li.append(image);
 
   const name = document.createElement('h1');
