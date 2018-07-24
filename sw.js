@@ -4,7 +4,6 @@ let cacheFiles = [
 	'/index.html',
 	'/restaurant.html',
 	'css/styles.css',
-	'js/register-sw.js',
 	'js/dbhelper.js',
 	'js/main.js',
 	'js/restaurant_info.js',
@@ -30,7 +29,7 @@ self.addEventListener('install', event => {
 			console.log('[ServiceWorker] Caching cacheFiles');
 			return cache.addAll(cacheFiles);
 			})
-		.catch( error => console.log('error: problem'))
+		.catch( error => console.log('error: SW install problem' + error))
 	)
 });
 
