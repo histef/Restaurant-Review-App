@@ -8,9 +8,11 @@ For the **Restaurant Reviews** projects, I was provided starter code with a lot 
 * Add a service worker to begin the process of creating a seamless offline experience for your users.
 
 ## Install
-** You must use your own API key to properly run this program. Insert your API key in "mapBoxToken" text in the main.js and restaurant_info.js files.**
+** You must use your own API key to properly run this program. Insert your API key at the top of main.js file where it says `<please-insert-your-API-key-here>` **
 
-Clone this repo. You can use a live server or you can follow the directions below:
+1. Clone this repo. 
+2. Insert API key.
+3. You can use a live server or you can follow the directions below:
 
 In this folder, start up a simple HTTP server to serve up the site files on your local computer. Python has some simple tools to do this.
 In a terminal, check the version of Python you have: python -V. If you have Python 2.x, spin up the server with python -m SimpleHTTPServer 8000 (or some other port, if port 8000 is already in use.) For Python 3.x, you can use python3 -m http.server 8000. If you don't have Python installed, navigate to Python's website to download and install the software.
