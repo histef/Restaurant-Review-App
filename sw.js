@@ -1,5 +1,5 @@
-let cacheName = 'offline v2 cache'; //sets versions for our cache
-let cacheFiles = [
+let cacheName = 'offline v3 cache'; //sets versions for our cache
+let cacheFiles = [ 
 	'/',
 	'/index.html',
 	'/restaurant.html',
@@ -23,11 +23,11 @@ let cacheFiles = [
 self.addEventListener('install', event => {
 	console.log('[ServiceWorker] Installed');
 		//install event has to wait until promise is resolved
-	event.waitUntil(
-		caches.open(cacheName) //caches API
+	event.waitUntil( //wait until cache is opened and all files added
+		caches.open(cacheName) //caches API, opens cacheName. if new name, this creates cache
 		.then(cache => {
 			console.log('[ServiceWorker] Caching cacheFiles');
-			return cache.addAll(cacheFiles);
+			return cache.addAll(cacheFiles); //if one file fails to add, none are added
 			})
 		.catch( error => console.log('error: SW install problem' + error))
 	)
@@ -38,10 +38,11 @@ self.addEventListener('fetch', event => {
 
 	event.respondWith(
 
+		//gets something out of any cache, starting with the oldest
 	    caches.match(event.request).then(function(response) {
 	      if (response) {
-	       return response;
-	      } return fetch(event.request);
+	       return response ||fetch(event.request); //check cache first, if not there, then fetch from network
+	   	  }
 	    })
     );
 
