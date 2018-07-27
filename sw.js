@@ -1,4 +1,4 @@
-let cacheName = 'offline v3 cache'; //sets versions for our cache
+let cacheName = 'offline v4 cache'; //sets versions for our cache
 let cacheFiles = [ 
 	'/',
 	'/index.html',
@@ -17,7 +17,10 @@ let cacheFiles = [
 	'img/8.jpg',
 	'img/9.jpg',
 	'img/10.jpg',
-	'data/restaurants.json'
+	'data/restaurants.json',
+	'js/config.js',
+	'js/sw-register.js',
+	'sw.js'
 ]
 
 self.addEventListener('install', event => {
@@ -36,13 +39,13 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
 	console.log('[ServiceWorker] fetched');
 
-	event.respondWith(
-
+	event.respondWith( //tells browser we're handling this request ourselves
+		//takes a response object (new Response()) or a promise that resolves with a response
 		//gets something out of any cache, starting with the oldest
 	    caches.match(event.request).then(function(response) {
 	      if (response) {
-	       return response ||fetch(event.request); //check cache first, if not there, then fetch from network
-	   	  }
+	       return response  //check cache first, if not there, then fetch from network
+	   	  } return fetch(event.request);
 	    })
     );
 
@@ -61,10 +64,12 @@ self.addEventListener('activate', event => {
 	console.log('[ServiceWorker] activated');
 	event.waitUntil(
 	//clear old cache versions
-	caches.keys().then(cacheNames => Promise.all(cacheNames.map(thisCacheName => {
-			if (thisCacheName !== cacheName){
-				console.log("[ServiceWorker] Removing Cached Files from", thisCacheName);
-				return caches.delete(thisCacheName);
+    //get all cache names that exist
+	caches.keys().then(cacheNames => Promise.all( //wait til we get everything to delete all at once.
+		cacheNames.map(oldCache => {
+			if (oldCache !== cacheName){ // check that it ISN't a name in the list of our staticCacheNames
+				console.log("[ServiceWorker] Removing Cached Files from old cache");
+				return caches.delete(oldCache);
 			}
 		})))
 	);
